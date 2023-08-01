@@ -1,0 +1,26 @@
+<!-- main_app/templates/navbar.html -->
+
+<nav>
+    <div class="nav-wrapper">
+      <ul>
+        <li>
+          <a href="{% url 'home' %}" class="left btn-flat">Home</a>
+        </li>
+        <li>
+          {% comment %} <a href="{% url 'about' %}" class="btn-flat">About</a> {% endcomment %}
+        </li>
+        <!-- Add more navigation elements if needed -->
+      </ul>
+  
+      <ul class="right">
+        {% if user.is_authenticated %}
+          <li><a href="{% url 'logout' %}" class="btn-flat"> Logout </a></li>
+        {% else %}
+          <li>
+            <a href="{% url 'account_login' %}" class="btn-flat"> Login </a>
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+  
