@@ -203,7 +203,6 @@ footer.page-footer.open {
   text-decoration: none;
 }
 
-/* Form container styles */
 form {
   max-width: 600px;
   margin: 0 auto;
@@ -216,6 +215,8 @@ form {
   justify-content: center;
   align-items: center;
   height: 100vh; /* Ensure the form container covers the full viewport height */
+  position: relative;
+  top: 10vmin;
 }
 
 /* Form header styles */
@@ -236,8 +237,10 @@ form label {
   margin-bottom: 5px;
 }
 
+/* Make the input fields accessible for interaction */
 form input[type="text"],
-form textarea {
+form textarea,
+form select {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
