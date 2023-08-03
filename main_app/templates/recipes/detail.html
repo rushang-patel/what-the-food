@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>{{ recipe.title }}</h1>
+
+<p>Main Ingredients: {{ recipe.description }}</p>
+<p>Prep Time: {{ recipe.prep }}</p>
+<p>Cook Time: {{ recipe.time }}</p>
+<p>Full Recipe: {{ recipe.steps }}</p>
+<p>Difficulty: {{ recipe.difficulty }}</p>
+<p>Image: {{ recipe.image }}</p>
+<p>Category: {{ recipe.category }}</p>
+<p>User: {{ recipe.user }}</p>
+<p>Created: {{ recipe.created }}</p>
+<p>Updated: {{ recipe.updated }}</p>
+
+<a href="{% url 'recipe-update' recipe.id %}" class="btn btn-sm btn-outline-secondary">Edit</a>
+<a href="{% url 'recipe-delete' recipe.id %}" class="btn btn-sm btn-outline-secondary">Delete</a>
+
+{% endblock %}

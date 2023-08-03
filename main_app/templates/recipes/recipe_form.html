@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Upload Your Recipe</h1>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    
+    <div>
+        <label for="{{ form.title.id_for_label }}">Title:</label>
+        {{ form.title }}
+    </div>
+    
+    <div>
+        <label for="{{ form.prep_time.id_for_label }}">Prep Time:</label>
+        {{ form.prep_time }}
+    </div>
+    
+    <div>
+        <label for="{{ form.ingredients.id_for_label }}">Ingredients:</label>
+        {{ form.ingredients }}
+    </div>
+    
+    <div>
+        <label for="{{ form.steps.id_for_label }}">Steps:</label>
+        {{ form.steps }}
+    </div>
+    
+    <div>
+        <label for="{{ form.optional_link.id_for_label }}">Optional Link:</label>
+        {{ form.optional_link }}
+    </div>
+    
+    <div>
+        <label for="{{ form.upload_file.id_for_label }}">Upload File:</label>
+        {{ form.upload_file }}
+    </div>
+    
+    <div>
+        <label>Choose up to 2 options:</label>
+        {% for checkbox in form.checkboxes %}
+            <div>
+                <label>
+                    {{ checkbox }}
+                    {{ checkbox.choice_label_tag }}
+                </label>
+            </div>
+        {% endfor %}
+    </div>
+    
+    <button type="submit">Upload</button>
+</form>
+
+{% endblock %}

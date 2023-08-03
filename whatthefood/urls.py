@@ -30,4 +30,7 @@ urlpatterns = [
     path('accounts/profile/', main_app_views.redirect_to_home, name='profile'),
     path('accounts/login/', main_app_views.redirect_to_google_login, name='account_login'),
     path('logout/', main_app_views.logout_and_redirect_to_home, name='logout'),
+    path('recipes/recipe_form/', main_app_views.recipe_form, name='recipe-form'),
+    path('recipes/create/', main_app_views.recipe_create, name='recipe-create'),
+
 ]
