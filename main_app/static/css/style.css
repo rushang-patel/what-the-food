@@ -202,3 +202,103 @@ footer.page-footer.open {
   padding: 2vmin;
   text-decoration: none;
 }
+
+/* Form container styles */
+form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 2px solid #155263;
+  border-radius: 8px;
+  /* Center the form vertically and horizontally */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Ensure the form container covers the full viewport height */
+}
+
+/* Form header styles */
+h1 {
+  text-align: center;
+  color: #155263;
+  margin-bottom: 20px;
+}
+
+/* Form input field styles */
+form div {
+  margin-bottom: 20px;
+}
+
+form label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+form input[type="text"],
+form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+form textarea {
+  height: 100px;
+}
+
+/* Checkbox styles */
+form div label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+form div label input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+/* Upload button styles */
+button[type="submit"] {
+  background-color: #155263;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: #000;
+}
+
+/* Optional link styles */
+form div label input[type="url"] {
+  width: 100%;
+}
+
+/* File input styles */
+form div label input[type="file"] {
+  display: none;
+}
+
+form div label span {
+  background-color: #155263;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+form div label input[type="file"] + span {
+  display: inline-block;
+  margin-top: 10px;
+}
+
+/* Error message styles */
+form p.error-message {
+  color: red;
+  margin-top: 5px;
+}
