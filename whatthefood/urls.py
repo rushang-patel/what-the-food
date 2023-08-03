@@ -30,4 +30,5 @@ urlpatterns = [
     path('accounts/profile/', main_app_views.redirect_to_home, name='profile'),
     path('accounts/login/', main_app_views.redirect_to_google_login, name='account_login'),
     path('logout/', main_app_views.logout_and_redirect_to_home, name='logout'),
+    path('meettheteam/', main_app_views.meet_the_team, name='meettheteam'),
 ]
