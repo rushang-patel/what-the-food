@@ -1,0 +1,20 @@
+/* static/css/styles.css */
+
+/* Add any custom styles you want for your form */
+/* For example, you can set the checkbox labels to be on a new line */
+label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  /* Style the checkboxes */
+  input[type="checkbox"] {
+    margin-right: 5px;
+    vertical-align: middle;
+  }
+  
+  /* Add some spacing between the checkboxes */
+  .checkbox-group {
+    margin-bottom: 10px;
+  }
+  
