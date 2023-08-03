@@ -5,12 +5,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>What The F**d</title>
-  <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="icon" type="image/x-icon" href="{% static 'images/hamburger.ico' %}">
+  {% block head %}{% endblock %}
 </head>
 <body>
-  <!-- Include the navigation bar template -->
+  {% include 'header.html' %}
   {% include 'navbar.html' %}
 
   <main class="container">
@@ -21,5 +22,7 @@
   <footer class="page-footer">
     <div class="right">All Rights Reserved, &copy; 2023 What The F**d &nbsp;</div>
   </footer>
+
+  <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>

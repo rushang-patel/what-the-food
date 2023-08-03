@@ -1,28 +1,26 @@
-<!-- main_app/templates/navbar.html -->
-
+<!-- navbar.html -->
 <nav>
   <div class="nav-wrapper">
-    <ul>
+    <!-- Dropdown menu items -->
+    <ul class="nav-links">
       <li>
         <a href="{% url 'home' %}" class="left btn-flat">Home</a>
       </li>
       <li>
-        <!-- Add a link to the recipe-create page -->
         <a href="{% url 'recipe-create' %}" class="btn-flat">Add Recipe</a>
       </li>
-      <!-- Add more navigation elements if needed -->
-    </ul>
-
-    <ul class="right">
-      {% if user.is_authenticated %}
-        <li><a href="{% url 'logout' %}" class="btn-flat">Logout</a></li>
-      {% else %}
+      <li>
+        <a href="{% url 'meettheteam' %}" class="left btn-flat">About Us</a>
+      </li>
+      <div class="login-wrapper">
         <li>
-          <a href="{% url 'account_login' %}" class="btn-flat">Login</a>
+          {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}" class="auth-links">Logout</a>
+          {% else %}
+            <a href="{% url 'account_login' %}" class="auth-links">Login</a>
+          {% endif %}
         </li>
-      {% endif %}
+      </div>
     </ul>
   </div>
 </nav>
-
-

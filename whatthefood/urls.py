@@ -32,5 +32,5 @@ urlpatterns = [
     path('logout/', main_app_views.logout_and_redirect_to_home, name='logout'),
     path('recipes/recipe_form/', main_app_views.recipe_form, name='recipe-form'),
     path('recipes/create/', main_app_views.recipe_create, name='recipe-create'),
-
+    path('meettheteam/', main_app_views.meet_the_team, name='meettheteam'),
 ]

@@ -19,5 +19,6 @@ urlpatterns = [
     path('recipes/search/', views.recipes_search, name='search'),
     path('recipes/tag/<str:tag>/', views.recipes_tag, name='tag'),
     path('recipes/category/<str:category>/', views.recipes_category, name='category'),
+    path('meettheteam/', views.meet_the_team, name='meettheteam'),
 ]
 
