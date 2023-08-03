@@ -1,26 +1,23 @@
-<!-- main_app/templates/navbar.html -->
-
+<!-- navbar.html -->
 <nav>
-    <div class="nav-wrapper">
-      <ul>
+  <div class="nav-wrapper">
+    <!-- Dropdown menu items -->
+    <ul class="nav-links">
+      <li>
+        <a href="{% url 'home' %}" class="left btn-flat">Home</a>
+      </li>
+      <li>
+        <a href="{% url 'meettheteam' %}" class="left btn-flat">About Us</a>
+      </li>
+      <div class="login-wrapper">
         <li>
-          <a href="{% url 'home' %}" class="left btn-flat">Home</a>
+          {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}" class="auth-links">Logout</a>
+          {% else %}
+            <a href="{% url 'account_login' %}" class="auth-links">Login</a>
+          {% endif %}
         </li>
-        <li>
-          {% comment %} <a href="{% url 'about' %}" class="btn-flat">About</a> {% endcomment %}
-        </li>
-        <!-- Add more navigation elements if needed -->
-      </ul>
-  
-      <ul class="right">
-        {% if user.is_authenticated %}
-          <li><a href="{% url 'logout' %}" class="btn-flat"> Logout </a></li>
-        {% else %}
-          <li>
-            <a href="{% url 'account_login' %}" class="btn-flat"> Login </a>
-          </li>
-        {% endif %}
-      </ul>
-    </div>
-  </nav>
-  
+      </div>
+    </ul>
+  </div>
+</nav>

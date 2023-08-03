@@ -33,3 +33,6 @@ def redirect_to_google_login(request):
 def logout_and_redirect_to_home(request):
     logout(request)
     return redirect('/')
+  
+def meet_the_team(request):
+    return render(request, 'meettheteam.html')
