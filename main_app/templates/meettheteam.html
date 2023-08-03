@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="meet-the-team-container">
+
+  <h1 class="team-heading">Meet the Passionate Developers Behind Our Food-Fueled Journey!</h1>
+
+  <p class="team-paragraph">In the world of coding and culinary delights, we are the dynamic trio behind this mouthwatering project! Meet Rushang, Mabel, and Romello, three ambitious software developers with an insatiable appetite for all things food-related. As avid foodies, we couldn't resist the temptation to blend our passion for technology with our love for gastronomy. With each line of code and every carefully crafted recipe feature, we strive to create a digital hub where food enthusiasts can gather, share their culinary creations, and relish the joy of cooking. Together, we are excited to embark on this flavorful journey and bring you a platform that tantalizes your taste buds and ignites your culinary imagination. Join us in celebrating the art of food on our delectable website!</p>
+
+  <!-- Add team members here -->
+  <div class="team-members-container">
+    <div class="team-member">
+      <img src="{% static 'images/collaborator1.jpg' %}" alt="Collaborator 1">
+      <p class="team-member-name">Rushang Patel</p>
+      <p class="team-member-links">
+        <a href="https://www.linkedin.com/in/patelrushang/" target="_blank" class="button-link">LinkedIn</a>
+        <a href="https://github.com/rushang-patel" target="_blank" class="button-link">GitHub</a>
+      </p>
+    </div>
+
+    <div class="team-member">
+      <img src="{% static 'images/collaborator2.jpg' %}" alt="Collaborator 2">
+      <p class="team-member-name">Mabel Lam</p>
+      <p class="team-member-links">
+        <a href="https://www.linkedin.com/in/mabelam-/" target="_blank" class="button-link">LinkedIn</a>
+        <a href="https://github.com/mabelam" target="_blank" class="button-link">GitHub</a>
+      </p>
+    </div>
+
+    <div class="team-member">
+      <img src="{% static 'images/collaborator3.jpg' %}" alt="Collaborator 3">
+      <p class="team-member-name">Romello Potts</p>
+      <p class="team-member-links">
+        <a href="https://www.linkedin.com/in/romello-potts/" target="_blank" class="button-link">LinkedIn</a>
+        <a href="https://github.com/RomelloP" target="_blank" class="button-link">GitHub</a>
+      </p>
+    </div>
+    
+    <!-- Add more team members here -->
+  </div>
+
+</div>
+{% endblock %}

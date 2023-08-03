@@ -1,0 +1,307 @@
+/* Header styles */
+body {
+  background-color: #e0ebeb;
+}
+
+header {
+  background-color: transparent;
+  padding: 1vmin;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  max-width: 100%; /* Limit the header width to 100% of the screen */
+  display: flex;
+  justify-content: flex-end;
+  transition: transform 0.3s ease-in-out;
+  z-index: 2;
+  overflow: hidden; /* Prevent overflow when the navbar opens */
+}
+
+header.open {
+  transform: scale(0.8) translateX(25%);
+}
+
+.logo {
+  width: 20%;
+  height: auto;
+  transition: transform 0.3s ease-in-out;
+}
+
+header.open .logo {
+  transform: scale(0.8);
+}
+
+/* Navbar styles */
+.nav-wrapper {
+  background-color: #155263;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 10%;
+  height: 100%;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+  padding-right: 1vmin;
+}
+
+/* Slide in the navbar to show it when the class "open" is added */
+.nav-wrapper.open {
+  transform: translateX(0%);
+}
+
+/* Hamburger icon styles */
+.menu-toggle {
+  cursor: pointer;
+  position: absolute;
+  top: 5vmin;
+  left: 5vmin;
+  z-index: 2;
+  width: 10vmin;
+  height: auto;
+}
+
+.menu-toggle img {
+  width: 1vmin;
+  height: 1vmin;
+  max-width: 1vmin;
+  max-height: 1vmin;
+}
+
+/* Navbar links styles */
+.nav-links {
+  text-align: center;
+  list-style: none;
+}
+
+/* Wrap the login/logout links in a new div */
+.login-wrapper {
+  transform: translateY(70vmin); /* Push the login/logout link to the bottom of the navbar */
+}
+
+/* Style for the button links */
+.nav-links li {
+  flex-grow: 1; /* Make the buttons grow to fill the available space */
+}
+
+.nav-links li a {
+  display: inline-block;
+  width: 100%; /* Make the buttons full-width */
+  padding: 1vmin 2vmin;
+  background-color: #fff; /* Button background color */
+  color: #155263; /* Button text color */
+  font-weight: bold;
+  text-decoration: none;
+  border: 2px solid #155263; /* Button border color */
+  border-radius: 4px; /* Rounded button corners */
+  transition: background-color 0.3s, color 0.3s;
+  transform: translateX(-6vmin);
+}
+
+.nav-links li a:hover {
+  background-color: #155263; /* Button background color on hover */
+  color: #fff; /* Button text color on hover */
+}
+
+/* Base styles */
+.base {
+  transition: transform 0.3s ease-in-out;
+  max-width: 100%; /* Limit the base width to 100% of the screen */
+}
+
+.base.open {
+  transform: scale(0.8) translateX(25%);
+}
+
+/* Footer styles */
+footer.page-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  max-width: 100%; /* Limit the footer width to 100% of the screen */
+  height: 1vmin;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  font-size: 1vmin;
+  transition: transform 0.3s ease-in-out;
+}
+
+footer.page-footer.open {
+  transform: scale(0.8) translateX(25%);
+}
+
+.team-heading {
+  text-align: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.team-paragraph {
+  font-size: 2vmin;
+  text-align: center;
+  margin-bottom: 2.0vmin;
+  transition: transform 0.3s ease-in-out;
+  margin-left: 20vmin;
+  margin-right: 20vmin;
+  text-align: justify;
+}
+
+.meet-the-team-open {
+  transform: scale(0.8);
+}
+
+/* Additional styles for the meettheteam.html content scaling */
+.meet-the-team-container {
+  transition: transform 0.3s ease-in-out;
+  max-width: 100%;
+  margin-top: 10%; /* Move the meettheteam.html content down by 10% */
+}
+
+.meet-the-team-container.open {
+  transform: scale(0.8) translateY(10%); /* Scale and move the content when navbar is open */
+}
+
+.team-members-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  max-width: 100%;
+}
+
+.team-member {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.team-member img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.team-member-name {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.team-member-links {
+  font-size: 16px;
+}
+
+.team-member-links a:hover {
+  background-color: white;
+  color: #155263;
+}
+
+.button-link {
+  /* padding: 1vmin 2vmin; */
+  background-color: #155263;
+  border-radius: 4px;
+  color: white;
+  padding: 2vmin;
+  text-decoration: none;
+}
+
+form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 2px solid #155263;
+  border-radius: 8px;
+  /* Center the form vertically and horizontally */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Ensure the form container covers the full viewport height */
+  position: relative;
+  top: 10vmin;
+}
+
+/* Form header styles */
+h1 {
+  text-align: center;
+  color: #155263;
+  margin-bottom: 20px;
+}
+
+/* Form input field styles */
+form div {
+  margin-bottom: 20px;
+}
+
+form label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Make the input fields accessible for interaction */
+form input[type="text"],
+form textarea,
+form select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+form textarea {
+  height: 100px;
+}
+
+/* Checkbox styles */
+form div label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+form div label input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+/* Upload button styles */
+button[type="submit"] {
+  background-color: #155263;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: #000;
+}
+
+/* Optional link styles */
+form div label input[type="url"] {
+  width: 100%;
+}
+
+/* File input styles */
+form div label input[type="file"] {
+  display: none;
+}
+
+form div label span {
+  background-color: #155263;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+form div label input[type="file"] + span {
+  display: inline-block;
+  margin-top: 10px;
+}
+
+/* Error message styles */
+form p.error-message {
+  color: red;
+  margin-top: 5px;
+}
