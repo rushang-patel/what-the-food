@@ -121,3 +121,6 @@ def recipe_form(request):
         form = RecipeForm()
 
     return render(request, 'recipes/recipe_form.html', {'form': form})
+  
+def meet_the_team(request):
+    return render(request, 'meettheteam.html')
