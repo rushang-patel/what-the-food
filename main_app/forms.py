@@ -8,3 +8,11 @@ class RecipeForm(forms.ModelForm):
         widgets = {
             'checkboxes': forms.CheckboxSelectMultiple,
         }
+
+def clean_checkboxes(self):
+        selected_checkboxes = self.cleaned_data.get('checkboxes')
+        if not selected_checkboxes:
+            raise forms.ValidationError("Please select at least one checkbox.")
+        elif len(selected_checkboxes) > 2:
+            raise forms.ValidationError("Please select up to two checkboxes.")
+        return selected_checkboxes

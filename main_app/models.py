@@ -8,6 +8,9 @@ class Recipe(models.Model):
     optional_link = models.URLField(blank=True)
     upload_file = models.FileField(upload_to='recipe_uploads/', blank=True)
 
+    updated_at = models.DateTimeField(auto_now=True)
+
+
     CHECKBOX_CHOICES = (
         ('Vegetarian', 'Vegetarian'),
         ('Dairy-Free', 'Dairy-Free'),

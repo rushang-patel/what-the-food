@@ -340,3 +340,10 @@ h1 {
 .delete-form {
   display: inline-block;
 }
+
+.recipe-image{
+    width : 20vmin ;
+    height:20vmin;
+    object-fit: cover ;
+
+}

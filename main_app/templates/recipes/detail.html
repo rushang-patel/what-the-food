@@ -4,16 +4,22 @@
 
 <h1>{{ recipe.title }}</h1>
 
+{% if recipe.upload_file %}
+  <p>Image:</p>
+  <img src="{{ recipe.upload_file.url }}" alt="{{ recipe.title }} Image">
+{% endif %}
+
 <p>Main Ingredients: {{ recipe.ingredients }}</p>
 <p>Prep Time: {{ recipe.prep_time }}</p>
 <p>Cook Time: {{ recipe.prep_time }}</p>
 <p>Full Recipe: {{ recipe.steps }}</p>
 <p>Difficulty: {{ recipe.difficulty }}</p>
-<p>Image: {{ recipe.image }}</p>
+<p>Image: {{ recipe.img }}</p>
 <p>Category: {{ recipe.category }}</p>
 <p>User: {{ recipe.user }}</p>
 <p>Created: {{ recipe.created }}</p>
 <p>Updated: {{ recipe.updated }}</p>
+
 
 <div class="btn-group" role="group">
     <a href="{% url 'recipe-update' recipe.id %}" class="btn btn-sm btn-outline-secondary">Edit</a>
