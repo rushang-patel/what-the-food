@@ -1,19 +1,3 @@
-"""
-URL configuration for whatthefood project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
 from django.urls import path, include
 from main_app import views as main_app_views
@@ -30,7 +14,10 @@ urlpatterns = [
     path('accounts/profile/', main_app_views.redirect_to_home, name='profile'),
     path('accounts/login/', main_app_views.redirect_to_google_login, name='account_login'),
     path('logout/', main_app_views.logout_and_redirect_to_home, name='logout'),
-    path('recipes/recipe_form/', main_app_views.recipe_form, name='recipe-form'),
     path('recipes/create/', main_app_views.recipe_create, name='recipe-create'),
-    path('meettheteam/', main_app_views.meet_the_team, name='meettheteam'),
+    path('recipes/', main_app_views.recipes_index, name='recipes-index'),
+    path('recipes/<int:recipe_id>/', main_app_views.recipe_detail, name='recipe-detail'),
+    path('recipes/<int:recipe_id>/update/', main_app_views.recipe_update, name='recipe-update'),
+    path('recipes/<int:recipe_id>/delete/', main_app_views.recipe_delete, name='recipe-delete'),
+    path('meet-the-team/', main_app_views.meet_the_team, name='meet-the-team'),
 ]

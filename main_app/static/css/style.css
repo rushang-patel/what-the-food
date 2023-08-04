@@ -174,10 +174,10 @@ footer.page-footer.open {
 }
 
 .team-member img {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  margin-bottom: 10px;
+  width: 20vmin;
+  height: auto;
+  border-radius: 3vmin;
+  margin-bottom: .5vmin;
 }
 
 .team-member-name {
@@ -251,57 +251,92 @@ form textarea {
   height: 100px;
 }
 
-/* Checkbox styles */
-form div label {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
+/* Add placeholder styles */
+form input::placeholder,
+form textarea::placeholder,
+form select::placeholder {
+  color: #aaa;
 }
 
-form div label input[type="checkbox"] {
-  margin-right: 10px;
+/* Adjust placeholder styles for title, prep_time, and description */
+form input#id_title::placeholder {
+  font-weight: bold;
+  font-style: italic;
+  color: #aaa;
 }
 
-/* Upload button styles */
-button[type="submit"] {
-  background-color: #155263;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
+/* main_app/static/main_app/css/styles.css */
+
+.recipe-cards-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+}
+
+.recipe-card {
+  border: 1px solid #ddd;
   border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+  padding: 10px;
 }
 
-button[type="submit"]:hover {
-  background-color: #000;
+.recipe-card img {
+  max-width: 100%;
+  height: auto;
 }
 
-/* Optional link styles */
-form div label input[type="url"] {
-  width: 100%;
-}
-
-/* File input styles */
-form div label input[type="file"] {
-  display: none;
-}
-
-form div label span {
-  background-color: #155263;
-  color: #fff;
-  padding: 10px 20px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-form div label input[type="file"] + span {
-  display: inline-block;
+.recipe-title {
+  font-size: 1.2rem;
+  font-weight: bold;
   margin-top: 10px;
 }
 
-/* Error message styles */
-form p.error-message {
-  color: red;
+.recipe-description {
   margin-top: 5px;
+}
+
+
+.container {
+  text-align: center;
+  padding: 5vmin 20vmin 5vmin 20vmin;
+}
+
+/* Style for the recipe title */
+h1 {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Style for recipe details */
+.recipe-details {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+/* Style for the recipe image */
+.recipe-image {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+/* Style for the edit and delete buttons */
+.edit-btn,
+.delete-btn {
+  display: inline-block;
+  padding: 8px 16px;
+  margin-right: 10px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.delete-btn {
+  background-color: #dc3545;
+}
+
+/* Style for the delete confirmation form */
+.delete-form {
+  display: inline-block;
 }

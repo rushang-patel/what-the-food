@@ -15,7 +15,9 @@
 <p>Created: {{ recipe.created }}</p>
 <p>Updated: {{ recipe.updated }}</p>
 
-<a href="{% url 'recipe-update' recipe.id %}" class="btn btn-sm btn-outline-secondary">Edit</a>
-<a href="{% url 'recipe-delete' recipe.id %}" class="btn btn-sm btn-outline-secondary">Delete</a>
+<div class="btn-group" role="group">
+    <a href="{% url 'recipe-update' recipe.id %}" class="btn btn-sm btn-outline-secondary">Edit</a>
+    <a href="{% url 'recipe-delete' recipe.id %}" class="btn btn-sm btn-outline-secondary" onclick="return confirm('Are you sure you want to delete this recipe?')">Delete</a>
+</div>
 
 {% endblock %}

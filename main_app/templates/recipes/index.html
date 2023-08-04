@@ -1,34 +1,22 @@
+<!-- main_app/templates/recipes/index.html -->
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-
-<h1>Recipes</h1>
-
-{% for recipe in recipes %}
-<div class="card">
-    <div class="card-content">
-        <span class="card-title">{{ recipe.name }}</span>
-        <p>Main Ingredients: {{ recipe.description }}</p>
-        <p>Prep Time: {{ recipe.prep }}</p>
-        <p>Cook Time: {{ recipe.time }}</p>
-        <p>Full Recipe: {{ recipe.steps }}</p>
-        <p>Difficulty: {{ recipe.difficulty }}</p>
-        <p>Image: {{ recipe.image }}</p>
-        <p>Category: {{ recipe.category }}</p>
-        <p>User: {{ recipe.user }}</p>
-        <p>Created: {{ recipe.created }}</p>
-        <p>Updated: {{ recipe.updated }}</p>
-
-        <div class="row">
-            <div class="col s12 m6">
-                <a href="{% url 'recipe-update' recipe.id %}" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">edit</i></a>
-            </div>
-            <div class="col s12 m6">
-                <a href="{% url 'recipe-delete' recipe.id %}" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">delete</i></a>
-            </div>
+  <h1>Recipes</h1>
+  <div class="recipe-cards-container">
+    {% for recipe in recipes %}
+    <a href="{% url 'recipe-detail' recipe.id %}">
+        <div class="recipe-card">
+          <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}">
+          <div class="recipe-title">{{ recipe.title }}</div>
+          <div class="recipe-description">{{ recipe.description }}</div>
         </div>
-    </div>
-</div>
-{% endfor %}
+      </a>
+    {% endfor %}
+  </div>
+{% endblock %}
 
+{% block styles %}
+  <link rel="stylesheet" type="text/css" href="{% static 'main_app/css/styles.css' %}">
 {% endblock %}
