@@ -17,4 +17,3 @@ urlpatterns = [
     path('recipes/<int:recipe_id>/delete/', views.recipe_delete, name='recipe-delete'),
     path('meettheteam/', views.meet_the_team, name='meet-the-team'),
 ]
-

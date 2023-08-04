@@ -2,8 +2,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.conf import settings
 from django.contrib.auth import logout
-from .forms import RecipeForm
 from .models import Recipe
+from .forms import RecipeForm
 
 def home(request):
     return render(request, 'home.html')
