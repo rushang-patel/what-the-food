@@ -13,10 +13,15 @@
     </div>
     
     <div>
-        <label for="{{ form.prep_time.id_for_label }}">Prep & Cook Time:</label>
+        <label for="{{ form.prep_time.id_for_label }}">Prep Time:</label>
         {{ form.prep_time }}
     </div>
-    
+
+    <div>
+        <label for="{{ form.cook_time.id_for_label }}">Cook Time:</label>
+        {{ form.cook_time }}
+    </div>
+
     <div>
         <label for="{{ form.ingredients.id_for_label }}">Ingredients:</label>
         {{ form.ingredients }}

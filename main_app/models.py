@@ -2,7 +2,8 @@ from django.db import models
 
 class Recipe(models.Model):
     title = models.CharField(max_length=200)
-    prep_time = models.CharField(max_length=100)
+    prep_time = models.CharField(max_length=10)
+    cook_time = models.CharField(max_length=100, blank=True, null=True)
     ingredients = models.TextField()
     steps = models.TextField()
     optional_link = models.URLField(blank=True)
