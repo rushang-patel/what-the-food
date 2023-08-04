@@ -8,12 +8,12 @@
     {% csrf_token %}
     
     <div>
-        <label for="{{ form.title.id_for_label }}">Title:</label>
+        <label for="{{ form.title.id_for_label }}">Name of Recipe:</label>
         {{ form.title }}
     </div>
     
     <div>
-        <label for="{{ form.prep_time.id_for_label }}">Prep Time:</label>
+        <label for="{{ form.prep_time.id_for_label }}">Prep & Cook Time:</label>
         {{ form.prep_time }}
     </div>
     
@@ -28,7 +28,7 @@
     </div>
     
     <div>
-        <label for="{{ form.optional_link.id_for_label }}">Optional Link:</label>
+        <label for="{{ form.optional_link.id_for_label }}">Link to Original Recipe (Optional):</label>
         {{ form.optional_link }}
     </div>
     
@@ -39,11 +39,12 @@
     
     <div>
         <label>Choose up to 2 options:</label>
-        {% for checkbox in form.checkboxes %}
+        {% for choice in form.checkboxes %}
             <div>
                 <label>
-                    {{ checkbox }}
-                    {{ checkbox.choice_label_tag }}
+                    <input type="checkbox" name="{{ form.checkboxes.name }}" value="{{ choice.0 }}"
+                           {% if choice.0 in form.checkboxes.value %}checked{% endif %}>
+                    {{ choice.1 }}
                 </label>
             </div>
         {% endfor %}
