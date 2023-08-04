@@ -60,6 +60,7 @@ def recipe_update(request, recipe_id):
         if form.is_valid():
             # Save the updated recipe to the database
             form.save()
+            recipe.save()
             # Redirect to the detail page of the updated recipe
             return redirect('recipe-detail', recipe_id=recipe.id)
     else:
