@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect
+# main_app/views.py
+from django.shortcuts import render, redirect, get_object_or_404
 from django.conf import settings
 from django.contrib.auth import logout
 from .forms import RecipeForm
@@ -33,25 +34,8 @@ def recipe_create(request):
     if request.method == 'POST':
         form = RecipeForm(request.POST, request.FILES)
         if form.is_valid():
-            title = form.cleaned_data['title']
-            prep_time = form.cleaned_data['prep_time']
-            ingredients = form.cleaned_data['ingredients']
-            steps = form.cleaned_data['steps']
-            optional_link = form.cleaned_data['optional_link']
-            upload_file = request.FILES['upload_file']
-            checkboxes = form.cleaned_data['checkboxes']
-
-            recipe = Recipe(
-                title=title,
-                prep_time=prep_time,
-                ingredients=ingredients,
-                steps=steps,
-                optional_link=optional_link,
-                upload_file=upload_file,
-                checkboxes=','.join(checkboxes),
-            )
-            recipe.save()
-
+            recipe = form.save()
+            # Redirect to the detail page of the newly created recipe
             return redirect('recipe-detail', recipe_id=recipe.id)
     else:
         form = RecipeForm()
@@ -66,61 +50,36 @@ def recipe_detail(request, recipe_id):
     recipe = Recipe.objects.get(id=recipe_id)
     return render(request, 'recipes/detail.html', {'recipe': recipe})
 
-def recipes_update(request, recipe_id):
-    recipe = Recipe.objects.get(id=recipe_id)
-    # Add your update logic here
-    # ...
-    return render(request, 'recipes/update.html', {'recipe': recipe})
+def recipe_update(request, recipe_id):
+    # Retrieve the existing recipe object from the database
+    recipe = get_object_or_404(Recipe, id=recipe_id)
 
-def recipes_delete(request, recipe_id):
-    recipe = Recipe.objects.get(id=recipe_id)
-    # Add your delete logic here
-    # ...
-    return redirect('recipes-index')
-
-def recipes_search(request):
-    # Add your search logic here
-    # ...
-    return render(request, 'recipes/search.html')
-
-def recipes_tag(request, tag):
-    # Add your tag logic here
-    # ...
-    return render(request, 'recipes/tag.html')
-
-def recipes_category(request, category):
-    # Add your category logic here
-    # ...
-    return render(request, 'recipes/category.html')
-
-def recipe_form(request):
     if request.method == 'POST':
-        form = RecipeForm(request.POST, request.FILES)
+        # Populate the form with the submitted data and files
+        form = RecipeForm(request.POST, request.FILES, instance=recipe)
         if form.is_valid():
-            title = form.cleaned_data['title']
-            prep_time = form.cleaned_data['prep_time']
-            ingredients = form.cleaned_data['ingredients']
-            steps = form.cleaned_data['steps']
-            optional_link = form.cleaned_data['optional_link']
-            upload_file = request.FILES['upload_file']
-            checkboxes = form.cleaned_data['checkboxes']
-
-            recipe = Recipe(
-                title=title,
-                prep_time=prep_time,
-                ingredients=ingredients,
-                steps=steps,
-                optional_link=optional_link,
-                upload_file=upload_file,
-                checkboxes=','.join(checkboxes),
-            )
-            recipe.save()
-
+            # Save the updated recipe to the database
+            form.save()
+            # Redirect to the detail page of the updated recipe
             return redirect('recipe-detail', recipe_id=recipe.id)
     else:
-        form = RecipeForm()
+        # Populate the form with the data from the existing recipe
+        form = RecipeForm(instance=recipe)
 
     return render(request, 'recipes/recipe_form.html', {'form': form})
-  
+
+def recipe_delete(request, recipe_id):
+    if request.method == 'POST':
+        # Get the recipe object
+        recipe = get_object_or_404(Recipe, id=recipe_id)
+        # Perform the deletion
+        recipe.delete()
+        # Redirect to the index.html page (recipes-index URL)
+        return redirect('recipes-index')
+    # For any other HTTP method (e.g., GET), show the detail.html page
+    recipe = get_object_or_404(Recipe, id=recipe_id)
+    return render(request, 'recipes/detail.html', {'recipe': recipe})
+
 def meet_the_team(request):
     return render(request, 'meettheteam.html')
+
