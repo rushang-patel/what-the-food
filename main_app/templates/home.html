@@ -3,6 +3,93 @@
 
 {% block content %}
 <main class="container">
+
   <!-- Your home page content goes here -->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    * {
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    
+    /* Style the header */
+    .header {
+      background-color: #c0e1e8;
+      padding: 3vmin;
+      text-align: center;
+      font-size: 35px;
+      color: white;
+      height: auto;
+
+    }
+    
+    /* Container for flexboxes */
+    .row {
+      display: -webkit-flex;
+      display: flex;
+    }
+    
+    /* Create three equal columns that sits next to each other */
+    .column {
+      -webkit-flex: 1;
+      -ms-flex: 1;
+      flex: 1;
+      padding: 50%;
+      margin-top: 4rem;
+      border-radius:.7em;
+      box-shadow: 0.9vw -.5vh rgba(black, 0);
+      overflow: hidden;
+
+      
+    }
+    
+    /* Style the footer */
+    .footer {
+      background-color: #f1f1f1;
+      padding: 10px;
+      text-align: center;
+    }
+    
+    /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+    @media (max-width: 600px) {
+      .row {
+        -webkit-flex-direction: column;
+        flex-direction: column;
+      }
+    }
+
+    .row{
+      display:-ms-grid;
+      grid-template-columns: repeat(3, minmax(auto,.8fr));
+      
+    }
+
+    </style>
+    </head>
+    <body>
+    
+  
+      
+      <div class="header">
+        <h2>WHAT THE F**D</h2>
+      <h1>Welcome <br> Chefs, Cooks and Wannabe's</h1>
+    </div>
+    
+    <div class="row">
+      <div class="column" style="background-color:#aaa;">Column</div>
+      <div class="column" style="background-color:#bbb;">Column</div>
+      <div class="column" style="background-color:#ccc;">Column</div>
+    </div>
+    
+  </div>
+  
+</body>
 </main>
+<div class="footer">
+  <p>Footer</p>
 {% endblock %}
