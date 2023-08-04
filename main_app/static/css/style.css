@@ -347,3 +347,26 @@ h1 {
     object-fit: cover ;
 
 }
+
+/* Style for the index.html*/
+/* div.recipe-card{
+    position: relative;
+    top:-9vh!important;;
+    left: -1vw !important;
+    right:  1vw!important;
+    bottom:auto!important;
+    overflow: hidden;
+    /* z-index: +1;
+    box-shadow: rgba(0, 0, 0,.1) 0px
+    1rem 2rem -.5rem,-rgba(0, 0, 0,.
+    1) calc(-1 * (1rem / 2))
+    1rem -.5rem;
+    transition:.3s ease all;
+    transform: scale(.9);
+    opacity: 0;
+    /* visibility:hidden; */
+
+ .recipe-card img{ 
+        max-width: unset!important;
+        min-height:unset!important;
+}
