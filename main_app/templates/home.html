@@ -57,15 +57,9 @@
     </div>
 
 
-    <!-- <div class="row">
-        <div class="column" style="background-color:#aaa;">Column 1</div>
-        <div class="column" style="background-color:#bbb;">Column 2</div>
-        <div class="column" style="background-color:#ccc;">Column 3</div>
-    </div> -->
+    
 </main>
-<!-- <div class="footer">
-    <p>Footer</p>
-</div> -->
+
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
@@ -106,9 +100,26 @@
     display: -webkit-flex;
     display: flex;
   }
-  img{
+  .carousel {
+    width: inherit !important;
+    min-height: inherit !important;
+    margin: 0 auto; /* Center the carousel */
+}
 
-  }
+/* Set a fixed height for carousel items */
+.carousel-item {
+    height: 500px; /* Set your desired height here */
+    width: 100%; /* Set your desired width here */
+    overflow: hidden; /* Hide any content that overflows the fixed size */
+}
+
+/* Set the images to cover the container */
+.carousel-item img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
   /* Create three equal columns that sits next to each other */
   .column {
     -webkit-flex: 1;
@@ -132,12 +143,11 @@
 {% endblock %}
 
   
-  /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
-  /* @media (max-width: 600px) {
+   @media (max-width: 600px) {
       .row {
         -webkit-flex-direction: column;
         flex-direction: column;
       }
-    } */
+    } 
 
     
