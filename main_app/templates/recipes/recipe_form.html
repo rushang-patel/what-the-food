@@ -37,17 +37,27 @@
         {{ form.upload_file }}
     </div>
     
-    <div>
-        <label>Choose up to 2 options:</label>
-        {% for choice in form.checkboxes %}
-            <div>
-                <label>
-                    <input type="checkbox" name="{{ form.checkboxes.name }}" value="{{ choice.0 }}"
-                           {% if choice.0 in form.checkboxes.value %}checked{% endif %}>
-                    {{ choice.1 }}
-                </label>
-            </div>
-        {% endfor %}
+    <div class="form-checkboxes">
+        <div>
+            <input type="checkbox" name="options" value="Vegetarian" id="id_options_0">
+            <label for="id_options_0">Vegetarian</label>
+        </div>
+        <div>
+            <input type="checkbox" name="options" value="Dairy-Free" id="id_options_1">
+            <label for="id_options_1">Dairy-Free</label>
+        </div>
+        <div>
+            <input type="checkbox" name="options" value="Beef" id="id_options_2">
+            <label for="id_options_2">Beef</label>
+        </div>
+        <div>
+            <input type="checkbox" name="options" value="Pork" id="id_options_3">
+            <label for="id_options_3">Pork</label>
+        </div>
+        <div>
+            <input type="checkbox" name="options" value="Chicken" id="id_options_4">
+            <label for="id_options_4">Chicken</label>
+        </div>
     </div>
     
     <button type="submit">Upload</button>
