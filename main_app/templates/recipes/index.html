@@ -7,9 +7,12 @@
     {% for recipe in recipes %}
     <a href="{% url 'recipe-detail' recipe.id %}">
       <div class="recipe-card">
-        <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}">
-        <div class="recipe-title">{{ recipe.title }}</div>
-        <div class="recipe-description">{{ recipe.description }}</div>
+        <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}" class="recipe-image">
+        <div class="recipe-details">
+          <h2 class="recipe-title">{{ recipe.title }}</h2>
+          <p class="recipe-time">Prep Time: {{ recipe.prep_time }} | Cook Time: {{ recipe.cook_time }}</p>
+          <p class="recipe-difficulty">Difficulty: {{ recipe.difficulty }}</p>
+        </div>
       </div>
     </a>
     {% endfor %}

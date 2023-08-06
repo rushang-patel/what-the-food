@@ -6,6 +6,9 @@
       <li>
         <a href="{% url 'home' %}" class="left btn-flat">Home</a>
       </li>
+        <li>
+          <a href="{% url 'recipes-index' %}" class="btn-flat">Recipes</a>
+        </li>
       {% if user.is_authenticated %}
       <li>
         <a href="{% url 'recipe-create' %}" class="btn-flat">Add Recipe</a>
@@ -19,9 +22,6 @@
       {% endif %}
       <li>
         <a href="{% url 'meet-the-team' %}" class="left btn-flat">About Us</a>
-      </li>
-      <li>
-        <a href="{% url 'recipes-index' %}" class="btn-flat">Recipes</a>
       </li>
       <div class="login-wrapper">
         <li>

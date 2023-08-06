@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
 from django.urls import path, include
 from main_app import views as main_app_views
 from django.contrib.auth.decorators import login_required
@@ -28,3 +30,6 @@ urlpatterns = [
     path('recipes/<int:recipe_id>/add-to-cutting-board/', main_app_views.add_to_cutting_board, name='add-to-cutting-board'),
     path('cuttingboard/<int:cutting_board_id>/', main_app_views.cuttingboard_detail, name='cb-detail'),
     ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
