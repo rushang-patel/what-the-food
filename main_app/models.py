@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 
 class Recipe(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default=User.objects.first().id)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     prep_time = models.CharField(max_length=50)
     cook_time = models.CharField(max_length=100, default='Unspecified')

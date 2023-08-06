@@ -83,8 +83,17 @@ WSGI_APPLICATION = 'whatthefood.wsgi.application'
 
 # Replace the existing DATABASES configuration with the following
 DATABASES = {
-    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
+   'default': {
+       'ENGINE': 'django.db.backends.postgresql',
+       'NAME': 'whatthefood',
+   }
 }
+
+# Override the default database settings if DATABASE_URL is present
+DATABASE_URL = os.environ.get('DATABASE_URL')
+if DATABASE_URL:
+    db_from_env = dj_database_url.config(default=DATABASE_URL, conn_max_age=600)
+    DATABASES['default'].update(db_from_env)
 
 
 # Password validation
