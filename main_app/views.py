@@ -52,6 +52,7 @@ def recipes_index(request):
 
 def recipe_detail(request, recipe_id):
     recipe = get_object_or_404(Recipe, id=recipe_id)
+    cutting_boards = CuttingBoard.objects.all()
 
     if request.method == 'POST':
         cutting_board_id = request.POST.get('cutting_board_id')
@@ -129,13 +130,11 @@ def cuttingboard_detail(request, cutting_board_id):
     return render(request, 'cuttingboard/cbdetail.html', {'cuttingboard': cuttingboard})
 
 def add_to_cutting_board(request, recipe_id):
-    recipe = Recipe.objects.get(pk=recipe_id)
-
+    recipe = get_object_or_404(Recipe, id=recipe_id, user=request.user)
     if request.method == 'POST':
         cutting_board_id = request.POST.get('cutting_board_id')
-        cutting_board = CuttingBoard.objects.get(pk=cutting_board_id)
-        cutting_board.recipes.add(recipe)
-        return redirect('cb-index')
-
-    cutting_boards = CuttingBoard.objects.filter(user=request.user)
-    return render(request, 'main_app/add_to_cutting_board.html', {'recipe': recipe, 'cutting_boards': cutting_boards})
+        if cutting_board_id:
+            cutting_board = get_object_or_404(CuttingBoard, id=cutting_board_id)
+            recipe.cutting_boards.add(cutting_board)
+            return redirect('recipe-detail', recipe_id=recipe.id)
+    return redirect('recipe-detail', recipe_id=recipe.id)

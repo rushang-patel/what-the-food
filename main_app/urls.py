@@ -1,4 +1,6 @@
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 from . import views
 
 urlpatterns = [
@@ -26,3 +28,6 @@ urlpatterns = [
     path('recipes/<int:recipe_id>/add-to-cutting-board/', views.add_to_cutting_board, name='add-to-cutting-board'),
     path('cuttingboard/<int:cutting_board_id>/', views.cuttingboard_detail, name='cb-detail'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

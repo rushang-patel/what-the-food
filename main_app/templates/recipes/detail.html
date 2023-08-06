@@ -1,5 +1,7 @@
-{% extends 'base.html' %} {% load static %} {% block content %}
+{% extends 'base.html' %}
+{% load static %}
 
+{% block content %}
 <div class="recipe-card">
   <h1 class="recipe-title">{{ recipe.title }}</h1>
 
@@ -9,63 +11,67 @@
     class="recipe-image"
   />
 
-  <p class="recipe-description">{{ recipe.description }}</p>
+  <p class="recipe-details"><b>Main Ingredients:</b><br>{{ recipe.ingredients }}</p>
+  <p class="recipe-details"><b>Prep Time:</b><br>{{ recipe.prep_time }}</p>
+  <p class="recipe-details"><b>Cook Time:</b><br>{{ recipe.cook_time }}</p>
+  <p class="recipe-details"><b>Full Recipe:</b><br>{{ recipe.steps }}</p>
+  <p class="recipe-details"><b>Difficulty:</b><br>{{ recipe.difficulty }}</p>
+  <p class="recipe-details"><b>User:</b><br>{{ recipe.user }}</p>
+  <p class="recipe-details"><b>Created:</b><br>{{ recipe.created }}</p>
+  <p class="recipe-details"><b>Updated:</b><br>{{ recipe.updated }}</p>
 
-  <p class="recipe-details">Main Ingredients: {{ recipe.ingredients }}</p>
-  <p class="recipe-details">Prep Time: {{ recipe.prep_time }}</p>
-  <p class="recipe-details">Cook Time: {{ recipe.cook_time }}</p>
-  <p class="recipe-details">Full Recipe: {{ recipe.steps }}</p>
-  <p class="recipe-details">Difficulty: {{ recipe.difficulty }}</p>
-  <p class="recipe-details">Category: {{ recipe.category }}</p>
-  <p class="recipe-details">User: {{ recipe.user }}</p>
-  <p class="recipe-details">Created: {{ recipe.created }}</p>
-  <p class="recipe-details">Updated: {{ recipe.updated }}</p>
-
-  <form method="post" action="{% url 'add-to-cutting-board' recipe.id %}">
-    {% csrf_token %}
-    <label for="cutting_board_id">Add to Cutting Board:</label>
-    <select name="cutting_board_id" id="cutting_board_id">
-      <option value="">Select a Cutting Board</option>
-      {% for cutting_board in cutting_boards %}
-      <option value="{{ cutting_board.id }}">{{ cutting_board.title }}</option>
-      {% endfor %}
-    </select>
-    <button type="submit">Add</button>
-  </form>
-
-  <div class="btn-group" role="group">
-    <form method="post" action="{% url 'recipe-update' recipe.id %}" style="display: inline">
-      {% csrf_token %}
-      <button type="submit" class="btn btn-sm">Tweak The Recipe</button>
-    </form>
-    <form method="post" action="{% url 'recipe-delete' recipe.id %}" style="display: inline">
-      {% csrf_token %}
-      <button type="submit" class="btn btn-sm" onclick="return confirm('Are you sure you want to delete this recipe?')">Trash It!</button>
-    </form>
-    <form method="post" action="{% url 'recipe-create' %}" style="display: inline">
-      {% csrf_token %}
-      <!-- Add checkboxes for options -->
-      {% for choice in form.checkboxes %}
+  <!-- Checkboxes for options -->
+  <div class="checkboxes">
+    {% for choice in form.checkboxes.field.choices %}
       <div>
-        <input type="checkbox" name="{{ form.checkboxes.name }}" value="{{ choice.0 }}"
-               {% if choice.0 in form.checkboxes.value %}checked{% endif %}>
+        <input
+          type="checkbox"
+          name="{{ form.checkboxes.name }}"
+          value="{{ choice.0 }}"
+          {% if choice.0 in recipe.options.all %}
+            checked
+          {% endif %}
+          disabled
+        />
         <label>{{ choice.1 }}</label>
       </div>
-      {% endfor %}
-      <button type="submit" class="btn btn-sm">Create Another Recipe</button>
+    {% endfor %}
+  </div>
+
+  <div class="cutting-board-container">
+    <form method="post" action="{% url 'add-to-cutting-board' recipe.id %}">
+      {% csrf_token %}
+      <label for="cutting_board_id">Select a Cutting Board:</label>
+      <select name="cutting_board_id" id="cutting_board_id">
+        <option value="">Select a Cutting Board</option>
+        {% for cutting_board in cutting_boards %}
+          <option value="{{ cutting_board.id }}">{{ cutting_board.title }}</option>
+        {% endfor %}
+      </select>
+      <button type="submit">Add</button>
     </form>
   </div>
 
-  {% if cutting_boards %}
-  <h2>My Cutting Boards</h2>
-  <ul>
-    {% for cutting_board in cutting_boards %}
-    <li>{{ cutting_board.title }}</li>
-    {% endfor %}
-  </ul>
-  {% else %}
-
-  {% endif %}
+  <div class="btn-group" role="group">
+    <div class="btn-item">
+      <form method="post" action="{% url 'recipe-update' recipe.id %}" style="display: inline">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-sm">Tweak The Recipe</button>
+      </form>
+    </div>
+    <div class="btn-item">
+      <form method="post" action="{% url 'recipe-delete' recipe.id %}" style="display: inline">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-sm" onclick="return confirm('Are you sure you want to delete this recipe?')">Trash It!</button>
+      </form>
+    </div>
+    <div class="btn-item">
+      <form method="post" action="{% url 'recipe-create' %}" style="display: inline">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-sm">New Recipe</button>
+      </form>
+    </div>
+  </div>
 </div>
-
 {% endblock %}
+
