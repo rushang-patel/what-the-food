@@ -17,6 +17,7 @@ django-admin-soft-dashboard==1.0.12
 django-allauth==0.54.0
 django-bootstrap5==23.3
 docutils==0.20.1
+gunicorn==21.2.0
 howdoi==2.0.20
 idna==3.4
 keep==2.10.1
@@ -24,6 +25,7 @@ lxml==4.9.3
 markdown-it-py==3.0.0
 mdurl==0.1.2
 oauthlib==3.2.2
+packaging==23.1
 Pillow==10.0.0
 psycopg2==2.9.7
 psycopg2-binary==2.9.6
