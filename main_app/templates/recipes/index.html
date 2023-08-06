@@ -1,4 +1,3 @@
-<!-- main_app/templates/recipes/index.html -->
 {% extends 'base.html' %}
 {% load static %}
 
@@ -7,16 +6,12 @@
   <div class="recipe-cards-container">
     {% for recipe in recipes %}
     <a href="{% url 'recipe-detail' recipe.id %}">
-        <div class="recipe-card">
-          <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}">
-          <div class="recipe-title">{{ recipe.title }}</div>
-          <div class="recipe-description">{{ recipe.description }}</div>
-        </div>
-      </a>
+      <div class="recipe-card">
+        <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}">
+        <div class="recipe-title">{{ recipe.title }}</div>
+        <div class="recipe-description">{{ recipe.description }}</div>
+      </div>
+    </a>
     {% endfor %}
   </div>
-{% endblock %}
-
-{% block styles %}
-  <link rel="stylesheet" type="text/css" href="{% static 'main_app/css/styles.css' %}">
 {% endblock %}

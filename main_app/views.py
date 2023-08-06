@@ -1,9 +1,11 @@
 # main_app/views.py
 from django.shortcuts import render, redirect, get_object_or_404
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-from .models import Recipe
-from .forms import RecipeForm
+from django.http import HttpResponseForbidden
+from .forms import RecipeForm, CuttingBoardForm
+from .models import Recipe, CuttingBoard
 
 def home(request):
     return render(request, 'home.html')
@@ -30,15 +32,17 @@ def logout_and_redirect_to_home(request):
     logout(request)
     return redirect('/')
 
+@login_required
 def recipe_create(request):
     if request.method == 'POST':
-        form = RecipeForm(request.POST, request.FILES)
+        form = RecipeForm(request.POST, request.FILES, user=request.user)
         if form.is_valid():
-            recipe = form.save()
-            # Redirect to the detail page of the newly created recipe
+            recipe = form.save(commit=False)
+            recipe.user = request.user  # Associate the recipe with the current user
+            recipe.save()
             return redirect('recipe-detail', recipe_id=recipe.id)
     else:
-        form = RecipeForm()
+        form = RecipeForm(user=request.user)
 
     return render(request, 'recipes/recipe_form.html', {'form': form})
 
@@ -47,12 +51,23 @@ def recipes_index(request):
     return render(request, 'recipes/index.html', {'recipes': recipes})
 
 def recipe_detail(request, recipe_id):
-    recipe = Recipe.objects.get(id=recipe_id)
+    recipe = get_object_or_404(Recipe, id=recipe_id)
+
+    if request.method == 'POST':
+        cutting_board_id = request.POST.get('cutting_board_id')
+        if cutting_board_id:
+            cutting_board = get_object_or_404(CuttingBoard, id=cutting_board_id)
+            recipe.cutting_boards.add(cutting_board)
+
     return render(request, 'recipes/detail.html', {'recipe': recipe})
 
-def recipe_update(request, recipe_id):
-    # Retrieve the existing recipe object from the database
+@login_required
+def recipes_update(request, recipe_id):
     recipe = get_object_or_404(Recipe, id=recipe_id)
+
+    # Check if the current user is the owner of the recipe
+    if request.user != recipe.user:
+        return HttpResponseForbidden("You don't have permission to edit this recipe.")
 
     if request.method == 'POST':
         # Populate the form with the submitted data and files
@@ -68,18 +83,59 @@ def recipe_update(request, recipe_id):
 
     return render(request, 'recipes/recipe_form.html', {'form': form})
 
-def recipe_delete(request, recipe_id):
+@login_required
+def recipes_delete(request, recipe_id):
+    recipe = get_object_or_404(Recipe, id=recipe_id)
+
+    # Check if the current user is the owner of the recipe
+    if request.user != recipe.user:
+        return HttpResponseForbidden("You don't have permission to delete this recipe.")
+
     if request.method == 'POST':
-        # Get the recipe object
-        recipe = get_object_or_404(Recipe, id=recipe_id)
         # Perform the deletion
         recipe.delete()
         # Redirect to the index.html page (recipes-index URL)
         return redirect('recipes-index')
+
     # For any other HTTP method (e.g., GET), show the detail.html page
-    recipe = get_object_or_404(Recipe, id=recipe_id)
     return render(request, 'recipes/detail.html', {'recipe': recipe})
 
 def meet_the_team(request):
     return render(request, 'meettheteam.html')
 
+
+
+@login_required
+def cuttingboard_form(request):
+    if request.method == 'POST':
+        form = CuttingBoardForm(request.POST)
+        if form.is_valid():
+            cutting_board = form.save(commit=False)
+            cutting_board.user = request.user
+            cutting_board.save()
+            return redirect('cb-index')
+    else:
+        form = CuttingBoardForm()
+
+    return render(request, 'cuttingboard/cuttingboard_form.html', {'form': form})
+
+@login_required
+def cuttingboard_index(request):
+    cutting_boards = CuttingBoard.objects.filter(user=request.user)
+    return render(request, 'cuttingboard/cbindex.html', {'cutting_boards': cutting_boards})
+
+def cuttingboard_detail(request, cutting_board_id):
+    cuttingboard = get_object_or_404(CuttingBoard, id=cutting_board_id, user=request.user)
+    return render(request, 'cuttingboard/cbdetail.html', {'cuttingboard': cuttingboard})
+
+def add_to_cutting_board(request, recipe_id):
+    recipe = Recipe.objects.get(pk=recipe_id)
+
+    if request.method == 'POST':
+        cutting_board_id = request.POST.get('cutting_board_id')
+        cutting_board = CuttingBoard.objects.get(pk=cutting_board_id)
+        cutting_board.recipes.add(recipe)
+        return redirect('cb-index')
+
+    cutting_boards = CuttingBoard.objects.filter(user=request.user)
+    return render(request, 'main_app/add_to_cutting_board.html', {'recipe': recipe, 'cutting_boards': cutting_boards})
