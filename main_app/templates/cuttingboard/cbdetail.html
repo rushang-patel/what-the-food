@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>{{ cuttingboard.title }}</h1>
+
+{% if cuttingboard.recipes.exists %}
+    <ul>
+        {% for recipe in cuttingboard.recipes.all %}
+            <li>
+                <a href="{% url 'recipe-detail' recipe.id %}">{{ recipe.title }}</a>
+                <p>Main Ingredients: {{ recipe.ingredients }}</p>
+                <p>Prep Time: {{ recipe.prep_time }}</p>
+                <p>Cook Time: {{ recipe.cook_time }}</p>
+                <p>Difficulty: {{ recipe.difficulty }}</p>
+                <!-- Add other recipe details as needed -->
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No recipes saved in this cutting board.</p>
+{% endif %}
+
+{% endblock %}

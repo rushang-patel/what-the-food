@@ -48,12 +48,57 @@
     <div>
         <label>Choose up to 2 options:</label>
         {% for choice in form.checkboxes %}
+=======
+<div class="recipe-form-container">
+    <h1>Upload Your Recipe</h1>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div>
+            <label for="{{ form.title.id_for_label }}">Name of Recipe:</label>
+            {{ form.title }}
+        </div>
+
+        <div>
+            <label for="{{ form.prep_time.id_for_label }}">Prep Time:</label>
+            {{ form.prep_time }}
+        </div>
+
+        <div>
+            <label for="{{ form.cook_time.id_for_label }}">Cook Time:</label>
+            {{ form.cook_time }}
+        </div>
+
+        <div>
+            <label for="{{ form.difficulty.id_for_label }}">Difficulty:</label>
+            {{ form.difficulty }}
+        </div>
+
+        <div>
+            <label for="{{ form.ingredients.id_for_label }}">Ingredients:</label>
+            {{ form.ingredients }}
+        </div>
+
+        <div>
+            <label for="{{ form.steps.id_for_label }}">Steps:</label>
+            {{ form.steps }}
+        </div>
+
+        <div>
+            <label for="{{ form.optional_link.id_for_label }}">Link to Original Recipe (Optional):</label>
+            {{ form.optional_link }}
+        </div>
+
+        <div>
+            <label for="{{ form.upload_file.id_for_label }}">Upload File:</label>
+            {{ form.upload_file }}
+        </div>
+
+        <div class="form-checkboxes">
             <div>
-                <label>
-                    <input type="checkbox" name="{{ form.checkboxes.name }}" value="{{ choice.0 }}"
-                           {% if choice.0 in form.checkboxes.value %}checked{% endif %}>
-                    {{ choice.1 }}
-                </label>
+                <input type="checkbox" name="options" value="Vegetarian" id="id_options_0">
+                <label for="id_options_0">Vegetarian</label>
             </div>
         {% endfor %}
         
@@ -61,5 +106,26 @@
    
     <button type="submit">Upload</button>
 </form>
+            <div>
+                <input type="checkbox" name="options" value="Dairy-Free" id="id_options_1">
+                <label for="id_options_1">Dairy-Free</label>
+            </div>
+            <div>
+                <input type="checkbox" name="options" value="Beef" id="id_options_2">
+                <label for="id_options_2">Beef</label>
+            </div>
+            <div>
+                <input type="checkbox" name="options" value="Pork" id="id_options_3">
+                <label for="id_options_3">Pork</label>
+            </div>
+            <div>
+                <input type="checkbox" name="options" value="Chicken" id="id_options_4">
+                <label for="id_options_4">Chicken</label>
+            </div>
+        </div>
+
+        <button type="submit">Upload</button>
+    </form>
+</div>
 
 {% endblock %}
