@@ -39,6 +39,10 @@ What The Food is a web application that allows users to upload and share their f
 
 ![What The Food Logo](https://github.com/rushang-patel/what-the-food/raw/main/main_app/static/readme_images/WTF_LOGO.png)
 
+## Planning
+
+![Excalidraw Image](https://github.com/rushang-patel/what-the-food/blob/main/main_app/static/readme_images/WhatTheF%20d_excalidraw%20(1).png)
+![ERD](https://github.com/rushang-patel/what-the-food/blob/main/main_app/static/readme_images/)
 
 ## Screenshots
 
