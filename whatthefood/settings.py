@@ -29,7 +29,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'default_secret_key_here')
 DEBUG = True
 # DEBUG = os.environ.get('DJANGO_ENV') == 'local'
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1'] if DEBUG else ['what-the-food-d4a1522bc189.herokuapp.com']
+ALLOWED_HOSTS = ['what-the-food-d4a1522bc189.herokuapp.com']
 
 # Application definition
 
