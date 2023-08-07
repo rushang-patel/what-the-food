@@ -83,6 +83,24 @@ WSGI_APPLICATION = 'whatthefood.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 # Replace the existing DATABASES configuration with the following
+# if DEBUG:
+#     # Local database configuration
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.postgresql',
+#             'NAME': 'whatthefood',
+#         }
+#     }
+# else:
+#     # Heroku database configuration
+#     DATABASES = {
+#         'default': {}
+#     }
+#     DATABASE_URL = os.environ.get('DATABASE_URL')
+#     if DATABASE_URL:
+#         db_from_env = dj_database_url.config(default=DATABASE_URL, conn_max_age=600)
+#         DATABASES['default'].update(db_from_env)
+
 if DEBUG:
     # Local database configuration
     DATABASES = {
@@ -94,14 +112,8 @@ if DEBUG:
 else:
     # Heroku database configuration
     DATABASES = {
-        'default': {}
+        'default': dj_database_url.config(os.environ['DATABASE_URL'], conn_max_age=600)
     }
-    DATABASE_URL = os.environ.get('DATABASE_URL')
-    if DATABASE_URL:
-        db_from_env = dj_database_url.config(default=DATABASE_URL, conn_max_age=600)
-        DATABASES['default'].update(db_from_env)
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
