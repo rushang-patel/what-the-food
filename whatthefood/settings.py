@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 import dj_database_url
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -25,10 +26,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', 'default_secret_key_here')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
+# DEBUG = os.environ.get('DJANGO_ENV') == 'local'
 
-ALLOWED_HOSTS = ['https://what-the-food-d4a1522bc189.herokuapp.com']
-
+ALLOWED_HOSTS = ['localhost', '127.0.0.1'] if DEBUG else ['what-the-food-d4a1522bc189.herokuapp.com']
 
 # Application definition
 
@@ -82,18 +83,24 @@ WSGI_APPLICATION = 'whatthefood.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 # Replace the existing DATABASES configuration with the following
-DATABASES = {
-   'default': {
-       'ENGINE': 'django.db.backends.postgresql',
-       'NAME': 'whatthefood',
-   }
-}
+if DEBUG:
+    # Local database configuration
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'whatthefood',
+        }
+    }
+else:
+    # Heroku database configuration
+    DATABASES = {
+        'default': {}
+    }
+    DATABASE_URL = os.environ.get('DATABASE_URL')
+    if DATABASE_URL:
+        db_from_env = dj_database_url.config(default=DATABASE_URL, conn_max_age=600)
+        DATABASES['default'].update(db_from_env)
 
-# Override the default database settings if DATABASE_URL is present
-DATABASE_URL = os.environ.get('DATABASE_URL')
-if DATABASE_URL:
-    db_from_env = dj_database_url.config(default=DATABASE_URL, conn_max_age=600)
-    DATABASES['default'].update(db_from_env)
 
 
 # Password validation
