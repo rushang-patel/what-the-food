@@ -49,3 +49,14 @@ What The Food is a web application that allows users to upload and share their f
 ![Recipe Image](https://github.com/rushang-patel/what-the-food/raw/main/main_app/static/readme_images/Recipes.png)
 ![Recipe Form](https://github.com/rushang-patel/what-the-food/raw/main/main_app/static/readme_images/Recipeform.png)
 
+## Challenges
+1. Implementing Bootstrap for the first time
+2. Deploying Heroku with Django
+3. First time creating a checkbox feature in a form
+4. Migrating & pycache errors
+5. Rendering images for the recipe board, only renders when specifically selected
+
+## Ice Box 
+1. Editing our cuttingboards- connecting to a specific cutting board for a recipe and editing within the cuttingboard (add/delete features)
+2. Implementing ChatGPT (Chat with Gordon) feature- a chef & recipe based AI
+3. Rendering images for recipe board for a full recipe overview display
