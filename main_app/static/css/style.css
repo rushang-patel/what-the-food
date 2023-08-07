@@ -37,7 +37,7 @@ body {
   /* Header styles */
   header {
     padding: 1vmin;
-    position: fixed;
+    display: flex;
     top: 0;
     right: 0;
     width: 100%;
