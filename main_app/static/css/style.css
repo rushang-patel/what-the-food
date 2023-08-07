@@ -383,6 +383,17 @@ body {
     font-size: 5vmin;
 }
 
+/* Style for the delete confirmation form */
+.delete-form {
+  display: inline-block;
+}
+
+.recipe-image{
+    width : 20vmin ;
+    height:20vmin;
+    object-fit: cover ;
+
+}
 .team-members-container {
     display: flex;
     flex-wrap: wrap;

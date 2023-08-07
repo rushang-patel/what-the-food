@@ -3,10 +3,6 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 
 class Recipe(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    title = models.CharField(max_length=100)
-    prep_time = models.CharField(max_length=50)
-    cook_time = models.CharField(max_length=100, default='Unspecified')
     ingredients = models.TextField()
     steps = models.TextField()
     optional_link = models.URLField(blank=True)
@@ -15,6 +11,12 @@ class Recipe(models.Model):
     created = models.DateTimeField(default=timezone.now)
     updated = models.DateTimeField(default=timezone.now)
     cutting_boards = models.ManyToManyField('CuttingBoard', blank=True)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
+    updated_at = models.DateTimeField(auto_now=True)
+
 
     CHECKBOX_CHOICES = (
         ('Vegetarian', 'Vegetarian'),

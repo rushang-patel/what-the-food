@@ -11,14 +11,21 @@
     class="recipe-image"
   />
 
-  <p class="recipe-details"><b>Main Ingredients:</b><br>{{ recipe.ingredients }}</p>
-  <p class="recipe-details"><b>Prep Time:</b><br>{{ recipe.prep_time }}</p>
-  <p class="recipe-details"><b>Cook Time:</b><br>{{ recipe.cook_time }}</p>
-  <p class="recipe-details"><b>Full Recipe:</b><br>{{ recipe.steps }}</p>
-  <p class="recipe-details"><b>Difficulty:</b><br>{{ recipe.difficulty }}</p>
-  <p class="recipe-details"><b>User:</b><br>{{ recipe.user }}</p>
-  <p class="recipe-details"><b>Created:</b><br>{{ recipe.created }}</p>
-  <p class="recipe-details"><b>Updated:</b><br>{{ recipe.updated }}</p>
+{% if recipe.upload_file %}
+  <p>Image:</p>
+  <img src="{{ recipe.upload_file.url }}" alt="{{ recipe.title }} Image">
+{% endif %}
+
+<p>Main Ingredients: {{ recipe.ingredients }}</p>
+<p>Prep Time: {{ recipe.prep_time }}</p>
+<p>Cook Time: {{ recipe.cook_time }}</p>
+<p>Full Recipe: {{ recipe.steps }}</p>
+<p>Difficulty: {{ recipe.difficulty }}</p>
+<!-- <p>Image: {{ recipe.img }}</p> -->
+<p>Category: {{ recipe.category }}</p>
+<p>User: {{ recipe.user }}</p>
+<p>Created: {{ recipe.created_at }}</p>
+<p>Updated: {{ recipe.updated_at }}</p>
 
   <!-- Checkboxes for options -->
   <div class="checkboxes">

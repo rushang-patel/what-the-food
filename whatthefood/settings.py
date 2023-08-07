@@ -142,7 +142,8 @@ SOCIALACCOUNT_PROVIDERS = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'US/Pacific'
+
 
 USE_I18N = True
 
